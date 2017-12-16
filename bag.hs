@@ -25,3 +25,11 @@ module MultisetMap (
     union (Bag m1) (Bag m2) = Bag (Map.unionWith f m1 m2)
             where
                 f a b = if a > b then a else b
+
+    intersection (Bag m1) (Bag m2) = Bag (Map.intersectionWith f m1 m2)
+                where
+                    f a b = if a < b then a else b
+
+    minus (Bag m1) (Bag m2) = Bag (Map.differenceWith f m1 m2)
+                    where
+                        f a b = if(a <= b) then Nothing else Just (a-b)
