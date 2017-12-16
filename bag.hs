@@ -7,11 +7,12 @@ module MultisetMap (
     union,
     intersection,
     minus,
-    inclusion
+    inclusion,
+    sumBag
     ) where
     import Data.Map (Map)
     import qualified Data.Map as Map
-    
+
     data Bag k = Bag (Map k Integer) deriving(Eq, Show)
 
     insert elem (Bag m) = Bag (Map.insertWith (+) elem 1 m)
@@ -38,3 +39,7 @@ module MultisetMap (
                         f a b = if(a <= b) then Nothing else Just (a-b)
 
     inclusion (Bag m1) (Bag m2) = Map.isSubmapOfBy (<=) m1 m2
+
+    sumBag (Bag m1) (Bag m2) = Bag (Map.unionWith (+) m1 m2)
+
+    size (Bag m) = Map.size m
