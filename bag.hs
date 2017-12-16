@@ -4,7 +4,10 @@ module MultisetMap (
     insert,
     remove,
     search,
-    union
+    union,
+    intersection,
+    minus,
+    inclusion
     ) where
     import Data.Map (Map)
     import qualified Data.Map as Map
@@ -33,3 +36,5 @@ module MultisetMap (
     minus (Bag m1) (Bag m2) = Bag (Map.differenceWith f m1 m2)
                     where
                         f a b = if(a <= b) then Nothing else Just (a-b)
+
+    inclusion (Bag m1) (Bag m2) = Map.isSubmapOfBy (<=) m1 m2
