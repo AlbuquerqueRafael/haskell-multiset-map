@@ -8,7 +8,8 @@ module MultisetMap (
     intersection,
     minus,
     inclusion,
-    sumBag
+    sumBag,
+    size
     ) where
     import Data.Map (Map)
     import qualified Data.Map as Map
