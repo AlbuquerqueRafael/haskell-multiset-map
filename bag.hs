@@ -3,7 +3,8 @@ module MultisetMap (
     Bag(Bag),
     insert,
     remove,
-    search
+    search,
+    union
     ) where
     import Data.Map (Map)
     import qualified Data.Map as Map
@@ -20,3 +21,7 @@ module MultisetMap (
         = case Map.lookup elem m of
             Nothing -> 0
             Just n -> n
+
+    union (Bag m1) (Bag m2) = Bag (Map.unionWith f m1 m2)
+            where
+                f a b = if a > b then a else b
