@@ -1,3 +1,4 @@
+module TestRemove (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -38,12 +39,10 @@ testRemove6 =
         (remove 'c' normalBag))
 
 -- Test remove 7: Remoção de um elemento que não está em uma bag com vários elementos não altera a bag
-testRemove7 = 
+testRemove7 =
     TestCase (assertEqual "Test remove 7" normalBag (remove 'k' normalBag))
 
-tests = TestList[
+tests = [
     testRemove1, testRemove2, testRemove3,
     testRemove4, testRemove5, testRemove6,
     testRemove7]
-
-run = runTestTT tests

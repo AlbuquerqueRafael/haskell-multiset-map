@@ -1,3 +1,4 @@
+module TestInsert (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -23,6 +24,4 @@ testInsert4 = TestCase (assertEqual "Test Insert 4" (Bag (Map.fromList [('A',1),
 t5 = remove 'A' t4_1
 testInsert5 = TestCase (assertEqual "Test Insert 5" (Bag (Map.fromList [('B',1), ('C',1)])) (insert 'C' t5))
 
-tests = TestList[testInsert1, testInsert2, testInsert3, testInsert4, testInsert5]
-
-run = runTestTT tests
+tests = [testInsert1, testInsert2, testInsert3, testInsert4, testInsert5]

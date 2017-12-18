@@ -1,3 +1,4 @@
+module TestMinus (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -5,7 +6,7 @@ import qualified Data.Map as Map
 
 bag1 = (Bag (Map.fromList [('A',3),('B',1)]))
 bag2 = (Bag (Map.fromList [('B',2),('A',1)]))
--- Test 
+-- Test
 testMinus1 = TestCase (assertEqual "Test minus 1" (Bag (Map.fromList [('A',2)])) (minus bag1 bag2))
 
 -- Test method with a bag with elements and another without elements
@@ -30,7 +31,7 @@ testMinus6 = TestCase (assertEqual "Test minus 6" (Bag (Map.fromList [('A',6),('
 -- Test with first bag empty
 testMinus7 = TestCase (assertEqual "Test minus 7" bag3 (minus bag3 bag1))
 
--- Common tests 
+-- Common tests
 testMinus8 = TestCase (assertEqual "Test minus 8" (Bag (Map.fromList [('A',3),('B',1)])) (minus bag1 bag5))
 
 testMinus9 = TestCase (assertEqual "Test minus 9" (Bag (Map.fromList [('B',1)])) (minus bag2 bag1))
@@ -43,7 +44,5 @@ testMinus12 = TestCase (assertEqual "Test minus 12" bag2 (minus bag2 bag5))
 
 testMinus13 = TestCase (assertEqual "Test minus 13" (Bag (Map.fromList [('A',4),('B',3)])) (minus bag2 bag6))
 
-tests = TestList[testMinus1,testMinus2, testMinus3, testMinus4, testMinus5, testMinus6, testMinus7, testMinus8, testMinus9,
+tests = [testMinus1,testMinus2, testMinus3, testMinus4, testMinus5, testMinus6, testMinus7, testMinus8, testMinus9,
 		 testMinus10,testMinus11,testMinus12,testMinus13]
-
-run = runTestTT tests

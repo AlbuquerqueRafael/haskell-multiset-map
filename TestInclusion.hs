@@ -1,3 +1,4 @@
+module TestInclusion (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -22,11 +23,10 @@ bag5 = Bag (Map.fromList [('A',3),('B',2), ('D',2)])
 testInclusion4 = TestCase (assertEqual "Test inclusion 4" True (inclusion bag5 bag4))
 
 testInclusion5 = TestCase (assertEqual "Test inclusion 5" False (inclusion bag4 bag5))
-
 -- Test using bag with some attributes , but greater counts
 bag6 = Bag (Map.fromList [('A',10),('B',20), ('D',30)])
 
-testInclusion6 = TestCase (assertEqual "Test inclusion 6" True (inclusion bag4 bag6))
+testInclusion6 = TestCase (assertEqual "Test inclusion 6" False (inclusion bag4 bag6))
 
 testInclusion7 = TestCase (assertEqual "Test inclusion 7" False (inclusion bag6 bag4))
 
@@ -34,12 +34,11 @@ testInclusion7 = TestCase (assertEqual "Test inclusion 7" False (inclusion bag6 
 testInclusion8 = TestCase (assertEqual "Test inclusion 8" False (inclusion bag4 bag3))
 
 -- Test with negavite numbers
+
 bag7 = Bag (Map.fromList [('A',-3),('B',-2),('C',-2)])
 testInclusion9 = TestCase (assertEqual "Test inclusion 9" False (inclusion bag7 bag5))
 
 testInclusion10 = TestCase (assertEqual "Test inclusion 8" True (inclusion bag2 bag6))
 
-tests = TestList[testInclusion1, testInclusion2, testInclusion3, testInclusion4, testInclusion5, testInclusion6,
+tests = [testInclusion1, testInclusion2, testInclusion3, testInclusion4, testInclusion5, testInclusion6,
 		 testInclusion7, testInclusion8, testInclusion9, testInclusion10]
-
-run = runTestTT tests

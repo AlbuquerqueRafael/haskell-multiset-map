@@ -1,3 +1,4 @@
+module TestSum (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -30,6 +31,4 @@ t6_1 = insert 'B' t6
 t6_2 = insert 'A' t6_1
 testSum5 = TestCase (assertEqual "Test Sum 5" (Bag (Map.fromList [('A',3),('B',2)])) (sumBag t5_1 t6_2))
 
-tests = TestList[testSum2, testSum3, testSum4, testSum5]
-
-run = runTestTT tests
+tests = [testSum2, testSum3, testSum4, testSum5]

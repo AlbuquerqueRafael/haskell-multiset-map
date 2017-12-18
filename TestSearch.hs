@@ -1,3 +1,4 @@
+module TestSearch (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -32,9 +33,7 @@ testSearch6 = TestCase (assertEqual "Test search 6" 9 (search 'c' normalBag))
 -- mas a bag possui vários outros elementos
 testSearch7 = TestCase (assertEqual "Test search 7" 1 (search 'b' normalBag))
 
-tests = TestList[
+tests = [
     testSearch1, testSearch2, testSearch3,
     testSearch4, testSearch5, testSearch6,
     testSearch7]
-
-run = runTestTT tests
