@@ -1,5 +1,7 @@
 {-# LANGUAGE OverloadedStrings, DeriveGeneric, DeriveAnyClass #-}
 
+module GenerateFile (main) where
+
 import TestIntersection as In
 import TestUnion as Un
 import Test.HUnit
@@ -15,9 +17,9 @@ data Output = Output { matricula :: [Char], falhas :: Int,
                     passaram :: Int, totalTestes :: Int, excecoes :: Int} deriving (Show, Generic, ToJSON)
 
 
-main = do
+main matricula = do
   s <- runTestTT $ test $ mconcat [ Un.tests, In.tests]
-  generateResult "matricula.txt" s
+  generateResult matricula s
 
 generateResult :: String -> Counts -> IO ()
 generateResult fileName str = do
