@@ -1,3 +1,4 @@
+module TestIntersection (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -100,7 +101,5 @@ k10_7 = correct_insert 'b' k10_6
 testUnion10 = TestCase (assertEqual "Test Union 10" (Bag (Map.fromList [('b',1), ('A',2), ('C',2),
                                                                         ('D',1)])) (intersection l10_9 k10_7))
 
-tests = TestList [testIntersection1, testIntersection2, testIntersection3, testIntersection4, testIntersection5, testIntersection6, testIntersection7,
+tests =  [testIntersection1, testIntersection2, testIntersection3, testIntersection4, testIntersection5, testIntersection6, testIntersection7,
                   testIntersection8, testIntersection9, testIntersection9]
-
-run = runTestTT tests

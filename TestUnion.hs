@@ -1,3 +1,4 @@
+module TestUnion (tests) where
 import MultisetMap
 import Test.HUnit
 import Data.Map (Map)
@@ -9,7 +10,7 @@ y = Bag (Map.empty)
 correct_insert elem (Bag m) = Bag (Map.insertWith (+) elem 1 m)
 
 --Test Union 1: Testa a união de duas bags vazias.
---testUnion1 = TestCase (assertEqual "Test Union 1" x (union x y))
+testUnion1 = TestCase (assertEqual "Test Union 1" x (union x y :: Bag()))
 
 --Test Union 2: Testa a união de uma bag vazia com uma bag contendo alguma coisa
 k2 = correct_insert 'B' y
@@ -97,6 +98,4 @@ k10_7 = correct_insert 'b' k10_6
 testUnion10 = TestCase (assertEqual "Test Union 10" (Bag (Map.fromList [('b',1), ('A',3), ('B',2), ('C',2),
                                                                         ('D',1), ('U', 1)])) (union l10_7 k10_7))
 
-tests = TestList [testUnion2, testUnion3, testUnion4, testUnion5, testUnion6, testUnion7, testUnion8, testUnion9, testUnion10]
-
-run = runTestTT tests
+tests = [testUnion1, testUnion2, testUnion3, testUnion4, testUnion5, testUnion6, testUnion7, testUnion8, testUnion9, testUnion10]
