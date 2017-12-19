@@ -20,10 +20,11 @@ import Data.Text.Lazy.IO as I
 import Data.Aeson.Text (encodeToLazyText)
 import Data.Aeson (ToJSON)
 
-data Output = Output { matricula :: [Char], falhas :: Int,
+data Output = Output { matricula :: String, falhas :: Int,
                     passaram :: Int, totalTestes :: Int, excecoes :: Int} deriving (Show, Generic, ToJSON)
 
 
+main :: String -> IO ()
 main matricula = do
   s <- runTestTT $ test $ mconcat [ Insert.tests, Inclusion.tests, Rm.tests, Minus.tests, Size.tests, Search.tests, Sum.tests, In.tests, Un.tests]
   generateResult matricula s
@@ -33,7 +34,7 @@ generateResult fileName str = do
   let formattedMatricula = splitOn "." fileName
   let matricula = formattedMatricula !! 0
   let totalTestes = cases str
-  let passaram = (tried str) - (errors str) - (failures str)
+  let passaram = tried str - errors str - failures str
   let excecoes = errors str
   let falhas = failures str
   let output = Output { matricula = matricula, falhas = falhas, passaram = passaram,
