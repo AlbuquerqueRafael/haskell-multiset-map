@@ -41,4 +41,4 @@ testInclusion9 = TestCase (assertEqual "Test inclusion 9" False (inclusion bag7 
 testInclusion10 = TestCase (assertEqual "Test inclusion 8" True (inclusion bag2 bag6))
 
 tests = [testInclusion1, testInclusion2, testInclusion3, testInclusion4, testInclusion5, testInclusion6,
-		 testInclusion7, testInclusion8, testInclusion9, testInclusion10]
+    testInclusion7, testInclusion8, testInclusion9, testInclusion10]

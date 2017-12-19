@@ -7,7 +7,7 @@ import qualified Data.Map as Map
 correct_insert elem m = Map.insertWith (+) elem 1 m
 
 --Test Union 1: Testa a união de duas bags vazias.
-testUnion1 = TestCase (assertEqual "Test Union 1" Map.empty (union Map.empty Map.empty :: Map k a))
+testUnion1 = TestCase (assertEqual "Test Union 1" (Map.empty :: (Map k Integer)) (union Map.empty Map.empty))
 
 --Test Union 2: Testa a união de uma bag vazia com uma bag contendo alguma coisa
 k2 = correct_insert 'B' Map.empty

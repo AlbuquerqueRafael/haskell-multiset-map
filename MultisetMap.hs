@@ -12,32 +12,40 @@ module MultisetMap (
     import Data.Map (Map)
     import qualified Data.Map as Map
 
-    insert elem m = Map.insertWith (+) elem 1 m
+    insert :: (Num a, Ord k) => k -> Map k a -> Map k a
+    insert element = Map.insertWith (+) element 1
 
-    remove elem m
-        | (Map.findWithDefault 1 elem m == 1) = (Map.delete elem m)
-        | otherwise = Map.insertWith (+) elem (-1) m
+    remove :: (Eq a, Num a, Ord k) => k -> Map k a -> Map k a
+    remove element m
+        | Map.findWithDefault 1 element m == 1 = Map.delete element m
+        | otherwise = Map.insertWith (+) element (-1) m
 
-    search elem m
-        = case Map.lookup elem m of
+    search :: Ord k => k -> Map k Integer -> Integer
+    search element m
+        = case Map.lookup element m of
             Nothing -> 0
             Just n -> n
 
-    union m1 m2 = Map.unionWith f m1 m2
+    union :: Ord k => Map k Integer -> Map k Integer -> Map k Integer
+    union = Map.unionWith f
             where
                 f a b = if a > b then a else b
 
     intersection :: (Ord c, Ord k) => Map k c -> Map k c -> Map k c
-    intersection m1 m2 = Map.intersectionWith f m1 m2
+    intersection = Map.intersectionWith f
                 where
                     f a b = if a < b then a else b
 
-    minus m1 m2 = Map.differenceWith f m1 m2
+    minus :: (Ord a, Ord k, Num a) => Map k a -> Map k a -> Map k a
+    minus = Map.differenceWith f
                     where
-                        f a b = if(a <= b) then Nothing else Just (a-b)
+                        f a b = if a <= b then Nothing else Just (a-b)
 
-    inclusion m1 m2 = Map.isSubmapOfBy (<=) m1 m2
+    inclusion :: (Ord a, Ord k) => Map k a -> Map k a -> Bool
+    inclusion = Map.isSubmapOfBy (<=)
 
-    sumBag  m1  m2 = Map.unionWith (+) m1 m2
+    sumBag :: (Num a, Ord k) => Map k a -> Map k a -> Map k a
+    sumBag = Map.unionWith (+)
 
-    size  m = Map.size m
+    size :: Map k a -> Int
+    size = Map.size
