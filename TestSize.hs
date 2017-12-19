@@ -5,7 +5,7 @@ import Data.Map (Map)
 import qualified Data.Map as Map
 
 -- Test Size 1: Verificação de uma Bag vazia
-testSize1 = TestCase (assertEqual "Test Size 1" 0 (size Map.empty))
+testSize1 = TestCase (assertEqual "Test Size 1" 0 (size (Map.empty :: Map Char Integer)))
 
 -- Test Size 2: Verificação de uma Bag com um elemento
 t2 = insert 'A' Map.empty

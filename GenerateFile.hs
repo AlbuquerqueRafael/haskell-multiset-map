@@ -2,8 +2,8 @@
 
 module GenerateFile (main) where
 
--- import TestIntersection as In
--- import TestUnion as Un
+import TestIntersection as In
+import TestUnion as Un
 import TestRemove as Rm
 import TestInsert as Insert
 import TestInclusion as Inclusion
@@ -25,8 +25,7 @@ data Output = Output { matricula :: [Char], falhas :: Int,
 
 
 main matricula = do
-  -- s <- runTestTT $ test $ mconcat [ Un.tests, In.tests, Rm.tests, Insert.tests, Inclusion.tests, Minus.tests, Size.tests, Search.tests, Sum.tests]
-  s <- runTestTT $ test $ mconcat [ Insert.tests, Inclusion.tests, Rm.tests, Minus.tests, Size.tests, Search.tests, Sum.tests]
+  s <- runTestTT $ test $ mconcat [ Insert.tests, Inclusion.tests, Rm.tests, Minus.tests, Size.tests, Search.tests, Sum.tests, In.tests, Un.tests]
   generateResult matricula s
 
 generateResult :: String -> Counts -> IO ()

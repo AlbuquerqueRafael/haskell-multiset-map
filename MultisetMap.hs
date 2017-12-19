@@ -12,10 +12,10 @@ module MultisetMap (
     import Data.Map (Map)
     import qualified Data.Map as Map
 
-    insert :: (Num a, Ord k) => k -> Map k a -> Map k a
+    insert :: (Ord k) => k -> Map k Integer -> Map k Integer
     insert element = Map.insertWith (+) element 1
 
-    remove :: (Eq a, Num a, Ord k) => k -> Map k a -> Map k a
+    remove :: (Ord k) => k -> Map k Integer -> Map k Integer
     remove element m
         | Map.findWithDefault 1 element m == 1 = Map.delete element m
         | otherwise = Map.insertWith (+) element (-1) m
@@ -31,21 +31,21 @@ module MultisetMap (
             where
                 f a b = if a > b then a else b
 
-    intersection :: (Ord c, Ord k) => Map k c -> Map k c -> Map k c
+    intersection :: (Ord k) => Map k Integer -> Map k Integer -> Map k Integer
     intersection = Map.intersectionWith f
                 where
                     f a b = if a < b then a else b
 
-    minus :: (Ord a, Ord k, Num a) => Map k a -> Map k a -> Map k a
+    minus :: (Ord k) => Map k Integer -> Map k Integer -> Map k Integer
     minus = Map.differenceWith f
                     where
                         f a b = if a <= b then Nothing else Just (a-b)
 
-    inclusion :: (Ord a, Ord k) => Map k a -> Map k a -> Bool
+    inclusion :: (Ord k) => Map k Integer -> Map k Integer -> Bool
     inclusion = Map.isSubmapOfBy (<=)
 
-    sumBag :: (Num a, Ord k) => Map k a -> Map k a -> Map k a
+    sumBag :: (Ord k) => Map k Integer -> Map k Integer -> Map k Integer
     sumBag = Map.unionWith (+)
 
-    size :: Map k a -> Int
+    size :: (Ord k) => Map k Integer -> Int
     size = Map.size
