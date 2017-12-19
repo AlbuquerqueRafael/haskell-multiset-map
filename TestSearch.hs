@@ -4,13 +4,12 @@ import Test.HUnit
 import Data.Map (Map)
 import qualified Data.Map as Map
 
-emptyBag = Bag (Map.empty)
-singletonBag = Bag (Map.fromList [('a', 1)])
-singletonWithMoreElemBag = Bag (Map.fromList [('a', 2)])
-normalBag = Bag (Map.fromList [('a', 2), ('b', 1), ('c', 9), ('d', 3)])
+singletonBag = Map.fromList [('a', 1)]
+singletonWithMoreElemBag = Map.fromList [('a', 2)]
+normalBag = Map.fromList [('a', 2), ('b', 1), ('c', 9), ('d', 3)]
 
 -- Test search 1: Procura por um elemento em uma bag vazia e retorna 0
-testSearch1 = TestCase (assertEqual "Test search 1" 0 (search 'a' emptyBag))
+testSearch1 = TestCase (assertEqual "Test search 1" 0 (search 'a' Map.empty))
 
 -- Test search 2: Procura por um elemento que não existe em uma bag com apenas um elemento
 testSearch2 = TestCase (assertEqual "Test search 2" 0 (search 'k' singletonBag))

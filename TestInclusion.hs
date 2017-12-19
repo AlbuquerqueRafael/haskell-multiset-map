@@ -4,27 +4,27 @@ import Test.HUnit
 import Data.Map (Map)
 import qualified Data.Map as Map
 
-bag1 = (Bag (Map.fromList [('A',3),('B',1)]))
-bag2 = (Bag (Map.fromList [('B',2),('A',1)]))
+bag1 = Map.fromList [('A',3),('B',1)]
+bag2 = Map.fromList [('B',2),('A',1)]
 
 -- Test if some bag is a subset of this
 testInclusion1 = TestCase (assertEqual "Test inclusion 1" True (inclusion bag1 bag1))
 
-bag3 = Bag (Map.empty)
+bag3 = Map.empty
 -- Test if empty bag is a subset of another
 testInclusion2 = TestCase (assertEqual "Test inclusion 2" True (inclusion bag3 bag1))
 
 -- Test if some big bag can be included on another small bag
-bag4 = Bag (Map.fromList [('A',5), ('B', 6), ('C',7) , ('D',8)])
+bag4 = Map.fromList [('A',5), ('B', 6), ('C',7) , ('D',8)]
 testInclusion3 = TestCase (assertEqual "Test inclusion 3" False (inclusion bag4 bag1))
 
 -- Test using small bag ( with all another bag elements )
-bag5 = Bag (Map.fromList [('A',3),('B',2), ('D',2)])
+bag5 = Map.fromList [('A',3),('B',2), ('D',2)]
 testInclusion4 = TestCase (assertEqual "Test inclusion 4" True (inclusion bag5 bag4))
 
 testInclusion5 = TestCase (assertEqual "Test inclusion 5" False (inclusion bag4 bag5))
 -- Test using bag with some attributes , but greater counts
-bag6 = Bag (Map.fromList [('A',10),('B',20), ('D',30)])
+bag6 = Map.fromList [('A',10),('B',20), ('D',30)]
 
 testInclusion6 = TestCase (assertEqual "Test inclusion 6" False (inclusion bag4 bag6))
 
@@ -35,7 +35,7 @@ testInclusion8 = TestCase (assertEqual "Test inclusion 8" False (inclusion bag4 
 
 -- Test with negavite numbers
 
-bag7 = Bag (Map.fromList [('A',-3),('B',-2),('C',-2)])
+bag7 = Map.fromList [('A',-3),('B',-2),('C',-2)]
 testInclusion9 = TestCase (assertEqual "Test inclusion 9" False (inclusion bag7 bag5))
 
 testInclusion10 = TestCase (assertEqual "Test inclusion 8" True (inclusion bag2 bag6))
