@@ -31,4 +31,4 @@ generateResult matricula testsResult = do
   let output = Output { matricula = matricula, falhas = falhas, passaram = passaram,
                           totalTestes = totalTestes,  excecoes = excecoes}
   I.writeFile fileName (encodeToLazyText output)
-  T.putStrLn "Worked"
+  T.putStrLn "Write in result json worked"

@@ -26,18 +26,17 @@ data Output = Output { matricula :: String, falhas :: Int,
 
 main :: String -> IO ()
 main matricula = do
-  s <- runTestTT $ test $ mconcat [ Insert.tests, Inclusion.tests, Rm.tests, Minus.tests, Size.tests, Search.tests, Sum.tests, In.tests, Un.tests]
-  generateResult matricula s
+  testsResult <- runTestTT $ test $ mconcat [ Insert.tests, Inclusion.tests, Rm.tests, Minus.tests, Size.tests, Search.tests, Sum.tests, In.tests, Un.tests]
+  generateResult matricula testsResult
 
 generateResult :: String -> Counts -> IO ()
-generateResult fileName str = do
-  let formattedMatricula = splitOn "." fileName
-  let matricula = formattedMatricula !! 0
-  let totalTestes = cases str
-  let passaram = tried str - errors str - failures str
-  let excecoes = errors str
-  let falhas = failures str
+generateResult matricula testsResult = do
+  let fileName = "results/" ++ matricula ++ ".json"
+  let totalTestes = cases testsResult
+  let passaram = tried testsResult - errors testsResult - failures testsResult
+  let excecoes = errors testsResult
+  let falhas = failures testsResult
   let output = Output { matricula = matricula, falhas = falhas, passaram = passaram,
                           totalTestes = totalTestes,  excecoes = excecoes}
-  I.writeFile "result.json" (encodeToLazyText output)
-  T.putStrLn "Worked"
+  I.writeFile (fileName) (encodeToLazyText output)
+  T.putStrLn "Write file in result directory json worked"

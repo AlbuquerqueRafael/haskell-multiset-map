@@ -29,7 +29,7 @@ module MultisetMap (
     union :: Ord k => Map k Integer -> Map k Integer -> Map k Integer
     union = Map.unionWith f
             where
-                f a b = if a > b then a else b
+                f a b = if a < b then a else b
 
     intersection :: (Ord k) => Map k Integer -> Map k Integer -> Map k Integer
     intersection = Map.intersectionWith f

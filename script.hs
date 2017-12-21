@@ -34,5 +34,3 @@ writeToFile :: String -> IO()
 writeToFile str = do
   T.writeFile "MultisetMap.hs" str
   putStrLn "Write to File Worked"
-  -- callCommand "ghci GenerateFile.hs -e \"main \\\"323\\\"\""
-  -- putStrLn "Worked2"
